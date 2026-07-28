@@ -1,4 +1,5 @@
 import Link from "next/link";
+import WaitlistForm from "@/components/WaitlistForm";
 
 export default function HomePage() {
   return (
@@ -238,13 +239,7 @@ export default function HomePage() {
               <p className="waitlist-sub">
                 Join 200+ healthcare leaders already on the waitlist. We&apos;re onboarding pilot partners in Q4 2026.
               </p>
-              <div className="form-row">
-                <input type="email" className="form-input" placeholder="Work email address" aria-label="Work email address" />
-                <button className="btn btn-primary btn-lg" id="waitlist-submit" type="button">
-                  Request access
-                </button>
-              </div>
-              <p className="form-fine">No spam. No credit card. Just early access.</p>
+              <WaitlistForm />
             </div>
           </div>
         </div>
