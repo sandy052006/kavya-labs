@@ -1,18 +1,50 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
-import { redirect } from "next/navigation";
+"use client";
+
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import styles from "./dashboard.module.css";
 
-export const metadata = {
-  title: "Dashboard — Kavya Labs",
-  description: "Your Kavya Labs health intelligence dashboard",
-};
+export default function DashboardPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
-export default async function DashboardPage() {
-  const session = await getServerSession(authOptions);
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.replace("/auth/signin");
+    }
+  }, [status, router]);
 
-  if (!session) {
-    redirect("/auth/signin?callbackUrl=/dashboard");
+  // Loading state
+  if (status === "loading") {
+    return (
+      <div style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#0a0a0f",
+        flexDirection: "column",
+        gap: "16px",
+      }}>
+        <div style={{
+          width: "40px", height: "40px",
+          border: "3px solid rgba(20,184,166,0.2)",
+          borderTop: "3px solid #14b8a6",
+          borderRadius: "50%",
+          animation: "spin 0.8s linear infinite",
+        }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+        <p style={{ color: "#5c5c7a", fontFamily: "Inter, sans-serif", fontSize: "0.9rem" }}>
+          Loading dashboard…
+        </p>
+      </div>
+    );
+  }
+
+  // Not authenticated
+  if (status === "unauthenticated" || !session) {
+    return null;
   }
 
   const firstName = session.user?.name?.split(" ")[0] ?? "there";
@@ -53,6 +85,23 @@ export default async function DashboardPage() {
               <div className={styles.userName}>{session.user?.name}</div>
               <div className={styles.userEmail}>{session.user?.email}</div>
             </div>
+            <button
+              onClick={() => signOut({ callbackUrl: "/" })}
+              style={{
+                marginLeft: "16px",
+                background: "rgba(239,68,68,0.08)",
+                border: "1px solid rgba(239,68,68,0.2)",
+                color: "#ef4444",
+                padding: "6px 14px",
+                borderRadius: "8px",
+                cursor: "pointer",
+                fontSize: "0.8rem",
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 600,
+              }}
+            >
+              Sign out
+            </button>
           </div>
         </div>
 
