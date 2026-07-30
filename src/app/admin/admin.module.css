@@ -1,0 +1,326 @@
+.main {
+  min-height: 100vh;
+  background: #0a0a0f;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  padding-top: 64px;
+}
+
+.bg { position: absolute; inset: 0; pointer-events: none; }
+.blob1 {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+  top: -100px; left: -100px; border-radius: 50%;
+}
+.blob2 {
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(20,184,166,0.06) 0%, transparent 70%);
+  bottom: 0; right: 0; border-radius: 50%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.breadcrumb {
+  font-size: 0.8rem;
+  color: #55556a;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sep { color: #33334a; }
+.breadActive { color: #7c3aed; font-weight: 600; }
+
+.heading {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.3rem;
+  letter-spacing: -0.03em;
+}
+.sub { color: #5c5c7a; font-size: 0.9rem; margin: 0; }
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.adminBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(124,58,237,0.2);
+  border-radius: 100px;
+  padding: 6px 14px;
+  color: #a78bfa;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.dot {
+  width: 7px; height: 7px;
+  background: #7c3aed;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.signOutBtn {
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.2);
+  color: #ef4444;
+  padding: 7px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-family: inherit;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.signOutBtn:hover { background: rgba(239,68,68,0.15); }
+
+/* ── Analytics Row ── */
+.analyticsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.analyticsCard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.analyticsCard:hover {
+  border-color: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+}
+.analyticsIcon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+.analyticsValue { font-size: 2rem; font-weight: 800; letter-spacing: -0.04em; }
+.analyticsLabel { color: #6666aa; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+.analyticsDelta { color: #44445a; font-size: 0.75rem; margin-top: 4px; }
+
+/* ── Charts Row ── */
+.chartsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.chartCard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #aaaacc;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 1.25rem;
+}
+
+/* Bar Chart */
+.barChart { display: flex; flex-direction: column; gap: 1rem; }
+.barRow { display: flex; align-items: center; gap: 10px; }
+.barLabel { font-size: 0.82rem; color: #8888aa; width: 100px; flex-shrink: 0; }
+.barTrack { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
+.barFill { height: 100%; border-radius: 100px; transition: width 0.8s ease; }
+.barPct { font-size: 0.8rem; font-weight: 700; width: 36px; text-align: right; flex-shrink: 0; }
+
+/* Role list */
+.roleList { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+.roleRow { display: flex; align-items: center; gap: 10px; }
+.roleDot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.roleLabel { flex: 1; color: #8888aa; font-size: 0.85rem; }
+.roleCount { font-size: 1.1rem; font-weight: 700; }
+
+/* System status */
+.systemStatus { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.statusRow { display: flex; justify-content: space-between; align-items: center; }
+.statusLabel { font-size: 0.8rem; color: #6666aa; }
+.statusOk { font-size: 0.78rem; color: #14b8a6; font-weight: 600; }
+
+/* ── User Table ── */
+.tableCard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.searchInput {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  color: #fff;
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  width: 220px;
+}
+.searchInput::placeholder { color: #44445a; }
+.searchInput:focus { border-color: rgba(20,184,166,0.4); }
+
+.tableWrap { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table thead th {
+  text-align: left;
+  padding: 0.75rem 1.25rem;
+  color: #55556a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  white-space: nowrap;
+}
+
+.tableRow td {
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: #ccccee;
+  white-space: nowrap;
+}
+.tableRow:last-child td { border-bottom: none; }
+.tableRow:hover td { background: rgba(255,255,255,0.02); }
+
+.nameCell {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #fff !important;
+}
+.avatar {
+  width: 30px; height: 30px;
+  background: linear-gradient(135deg, #14b8a6, #7c3aed);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+.emailCell { color: #6666aa !important; }
+.dateCell { color: #44445a !important; font-size: 0.8rem; }
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.badgeAdmin { background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.2); }
+.badgeUser { background: rgba(20,184,166,0.1); color: #14b8a6; border: 1px solid rgba(20,184,166,0.2); }
+
+.provider { font-size: 0.8rem; }
+.providerGoogle { color: #60a5fa; }
+.providerCreds { color: #f59e0b; }
+
+.status {
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.statusActive { background: rgba(20,184,166,0.1); color: #14b8a6; }
+.statusInactive { background: rgba(100,100,120,0.1); color: #55556a; }
+
+.tableFooter {
+  padding: 0.75rem 1.5rem;
+  color: #44445a;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ── Security Card ── */
+.securityCard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.securityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.securityItem {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 1rem;
+  position: relative;
+}
+.securityLabel { font-size: 0.72rem; color: #55556a; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+.securityValue { font-size: 1rem; font-weight: 700; color: #14b8a6; margin: 4px 0 2px; }
+.securityDetail { font-size: 0.75rem; color: #44445a; }
+.securityCheck {
+  position: absolute;
+  top: 10px; right: 12px;
+  color: #14b8a6;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .heading { font-size: 1.5rem; }
+  .analyticsRow { grid-template-columns: 1fr 1fr; }
+}
